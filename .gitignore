@@ -7,3 +7,4 @@ defaults.pkl
 /build
 /dist
 main.spec
+*.pyc

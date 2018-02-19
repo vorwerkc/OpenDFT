@@ -656,11 +656,14 @@ getden2  -1
         raise NotImplementedError
 
     def _get_engine_version(self):
-        p = subprocess.Popen(['abinit','--version'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=shell_bool)
+        p = subprocess.Popen(['abinit','--version'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
         res, err = p.communicate()
         res = res.decode()
         version_list = res.strip().split('.')
-        version_int_list = [int(x) for x in version_list]
+        try:
+          version_int_list = [int(x) for x in version_list]
+        except ValueError:
+          version_int_list=[]
         return version_int_list
 
 
